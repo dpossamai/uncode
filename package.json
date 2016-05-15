@@ -1,0 +1,29 @@
+{
+  "name": "uncode",
+  "version": "1.0.0",
+  "description": "Website in Spring and AngularJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpossamai/uncode.git"
+  },
+  "keywords": [
+    "spring",
+    "angularJS"
+  ],
+  "author": "dpossamai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dpossamai/uncode/issues"
+  },
+  "homepage": "https://github.com/dpossamai/uncode#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5"
+  }
+}
