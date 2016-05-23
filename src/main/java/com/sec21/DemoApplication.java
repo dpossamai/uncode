@@ -7,6 +7,9 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.sec21.config.SecurityConfiguration;
+import com.sec21.controllers.HomeController;
+
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
@@ -18,7 +21,7 @@ public class DemoApplication extends SpringBootServletInitializer{
 	
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(applicationClass);
+        return application.sources(applicationClass, HomeController.class, SecurityConfiguration.class);
     }
 
     private static Class<DemoApplication> applicationClass = DemoApplication.class;
