@@ -1,5 +1,7 @@
 package com.sec21.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,9 @@ import com.sec21.filters.CsrfHeaderFilter;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource dataSource;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		 http.httpBasic()
@@ -24,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		 .antMatchers("/","/home.html","/index.html", "/login.html","/user").permitAll().anyRequest().anonymous()
 		 .and()
 		 .authorizeRequests()
-		 .antMatchers("/profile.html").permitAll().anyRequest().authenticated().and()
+		 .antMatchers("/profile.html").access("hasRole('ROLE_USER')").anyRequest().permitAll().anyRequest().authenticated().and()
 		 .addFilterAfter(new CsrfHeaderFilter(),	
 		 CsrfFilter.class).csrf().csrfTokenRepository(csrfTokenRepository()).and()
 		 .logout();
@@ -32,7 +37,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		  auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");
+//		  auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");
+		  auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("SELECT NM_USERNAME, NM_PASSWORD, ENABLED FROM uncode.users WHERE NM_USERNAME=?")
+		  .authoritiesByUsernameQuery("SELECT NM_USERNAME, NM_ROLE FROM uncode.user_roles WHERE NM_USERNAME=?");
 	}
 
 	private CsrfTokenRepository csrfTokenRepository() {
