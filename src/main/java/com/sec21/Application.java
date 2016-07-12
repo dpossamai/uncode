@@ -1,7 +1,5 @@
 package com.sec21;
 
-import org.flywaydb.core.Flyway;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,20 +9,22 @@ import org.springframework.context.annotation.Configuration;
 
 import com.sec21.config.SecurityConfiguration;
 import com.sec21.controllers.HomeController;
+import com.sec21.controllers.PlayerController;
+import com.sec21.controllers.TeamController;
 
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class DemoApplication extends SpringBootServletInitializer{
+public class Application extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 	
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(applicationClass, HomeController.class, SecurityConfiguration.class);
+        return application.sources(applicationClass, HomeController.class,PlayerController.class, TeamController.class, SecurityConfiguration.class);
     }
 
-    private static Class<DemoApplication> applicationClass = DemoApplication.class;
+    private static Class<Application> applicationClass = Application.class;
 }

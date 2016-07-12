@@ -57,3 +57,5 @@ FOREIGN KEY (`ID_POSITION`) REFERENCES `position` (`ID`)
 INSERT INTO player(NM_NAME, AGE, POWER, TECNIQUE) VALUES ('deivide',23,78,80), ('player1',21,70,76);
 INSERT INTO users(NM_USERNAME, NM_PASSWORD, ENABLED) VALUES ('dpossamai','dpossamai',true), ('user1','user1',true);
 INSERT INTO user_roles(NM_USERNAME, NM_ROLE) VALUES ('dpossamai','ROLE_USER'),  ('dpossamai','ROLE_ADMIN'), ('user1','ROLE_USER');
+
+INSERT INTO team(NM_NAME) VALUES ('team1'), ('team2'), ('team3');

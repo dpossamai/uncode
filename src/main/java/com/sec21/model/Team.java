@@ -28,7 +28,7 @@ public class Team {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="ID")
 	public Integer getId() {
 		return id;
 	}
@@ -39,7 +39,7 @@ public class Team {
 	
 	@NotNull
 	@Size(min=6, max=20)
-	@Column(name = "name", nullable = false)
+	@Column(name = "NM_NAME", nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -48,7 +48,7 @@ public class Team {
 		this.name = name;
 	}
 
-	@Column(name = "emblem", nullable = false)
+	@Column(name = "NM_EMBLEM", nullable = false)
 	public String getEmblem() {
 		return emblem;
 	}

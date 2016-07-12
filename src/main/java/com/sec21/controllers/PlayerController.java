@@ -11,16 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sec21.dao.PlayerRepository;
 import com.sec21.model.Player;
+import com.sec21.service.PlayerService;
 
 @RestController
 public class PlayerController {
 
 	@Autowired
-	private PlayerRepository playerRepository;
+	private PlayerService playerService;
 	
 	@RequestMapping("/searchPlayer")
-	public ResponseEntity<?> user(@RequestParam(value="name",required=false)String name) {
-		ResponseEntity<List<Player>> reponse = new ResponseEntity<List<Player>>(playerRepository.findByName(name), HttpStatus.OK);
+	public ResponseEntity<?> searchPlayer(@RequestParam(value="name",required=false)String name) {
+		ResponseEntity<List<Player>> reponse = new ResponseEntity<List<Player>>(playerService.searchPlayer(name), HttpStatus.OK);
 		return reponse;
 	}
 }
