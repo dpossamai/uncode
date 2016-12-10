@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 	
-	@RequestMapping("/user")
-	public ResponseEntity<?> user(Principal user) {
+	@RequestMapping("/login")
+	public ResponseEntity<?> login(Principal user) {
 		return user == null ? new ResponseEntity<String>(HttpStatus.UNAUTHORIZED) : new ResponseEntity<Principal>(user, HttpStatus.OK);
 	}
 	
